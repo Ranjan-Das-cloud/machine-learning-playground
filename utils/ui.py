@@ -3,13 +3,13 @@ import streamlit as st
 
 
 from models.NaiveBayes import nb_param_selector
-from models.NeuralNetwork import nn_param_selector
-from models.RandomForet import rf_param_selector
-from models.DecisionTree import dt_param_selector
-from models.LogisticRegression import lr_param_selector
-from models.KNearesNeighbors import knn_param_selector
+from models.NeuralNetwork import neural_network_param_selector
+from models.RandomForest import random_forest_param_selector
+from models.DecisionTree import decision_tree_param_selector
+from models.LogisticRegression import logistic_regression_param_selector
+from models.KNearestNeighbors import knn_param_selector
 from models.SVC import svc_param_selector
-from models.GradientBoosting import gb_param_selector
+from models.GradientBoosting import gradient_boosting_param_selector
 
 from models.utils import model_imports
 from utils.functions import img_to_bytes
@@ -87,16 +87,16 @@ def model_selector():
         )
 
         if model_type == "Logistic Regression":
-            model = lr_param_selector()
+            model = logistic_regression_param_selector()
 
         elif model_type == "Decision Tree":
-            model = dt_param_selector()
+            model = decision_tree_param_selector()
 
         elif model_type == "Random Forest":
-            model = rf_param_selector()
+            model = random_forest_param_selector()
 
         elif model_type == "Neural Network":
-            model = nn_param_selector()
+            model = neural_network_param_selector()
 
         elif model_type == "K Nearest Neighbors":
             model = knn_param_selector()
@@ -108,7 +108,7 @@ def model_selector():
             model = svc_param_selector()
 
         elif model_type == "Gradient Boosting":
-            model = gb_param_selector()
+            model = gradient_boosting_param_selector()
 
     return model_type, model
 
@@ -172,7 +172,7 @@ def footer():
     st.sidebar.markdown("---")
     st.sidebar.markdown(
         """
-        [<img src='data:image/png;base64,{}' class='img-fluid' width=25 height=25>](https://github.com/ahmedbesbes/playground) <small> Playground 0.1.0 | April 2021</small>""".format(
+        [<img src='data:image/png;base64,{}' class='img-fluid' width=25 height=25>](https://github.com/ranjan-das-cloud/macine-learning-playground) <small> Version 0.1.0 &copy;Ranjan Das | July 2021</small>""".format(
             img_to_bytes("./images/github.png")
         ),
         unsafe_allow_html=True,
