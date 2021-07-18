@@ -16,19 +16,22 @@ from utils.functions import img_to_bytes
 
 
 def introduction():
-    st.title("**Welcome to playground 🧪**")
+    st.title("**Welcome to ML playground ⚗️👨🏻‍💻**")
     st.subheader(
         """
-        This is a place where you can get familiar with machine learning models directly from your browser
+        Hey! Do you wanna tinker 🧪 with machine learning models directly from your browser?? 🌎
+        Follow the steps -
         """
     )
 
     st.markdown(
         """
-    - 🗂️ Choose a dataset
+    - 📂 Choose a dataset
     - ⚙️ Pick a model and set its hyper-parameters
-    - 📉 Train it and check its performance metrics and decision boundary on train and test data
-    - 🩺 Diagnose possible overitting and experiment with other settings
+    - 📈 Train it and check its performance metrics and decision boundary on train and test data
+    - 🔬 Inspect the changes occured by selecting other possible models and hyper-parameters using other settings
+    - 🥇 Compare the accuracy and shape of the decision boundary introduced by every model with all possible settings
+    - 🕵🏻 Make a decision on the perfect model🏆 along with respective hyper-parameters
     -----
     """
     )
@@ -47,14 +50,14 @@ def dataset_selector():
         )
 
         train_noise = st.slider(
-            "Set the noise (train data)",
+            "Set the noise (for train data)",
             min_value=0.01,
             max_value=0.2,
             step=0.005,
             value=0.06,
         )
         test_noise = st.slider(
-            "Set the noise (test data)",
+            "Set the noise (for test data)",
             min_value=0.01,
             max_value=1.0,
             step=0.005,
