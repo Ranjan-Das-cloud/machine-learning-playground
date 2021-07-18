@@ -13,12 +13,13 @@ import plotly.graph_objs as go
 
 from models.utils import model_infos, model_urls
 
-
+'''Function to use any custom css file created by the user'''
 def local_css(file_name):
     with open(file_name) as f:
         st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 
 
+'''Defining and constructing the most fundamentals datasets and splitting them on train and test dataset by using streamlit and user defined functions'''
 @st.cache(suppress_st_warning=True, allow_output_mutation=True, show_spinner=True)
 def generate_data(dataset, n_samples, train_noise, test_noise, n_classes):
     if dataset == "moons":
@@ -51,6 +52,7 @@ def generate_data(dataset, n_samples, train_noise, test_noise, n_classes):
     return x_train, y_train, x_test, y_test
 
 
+'''Function to plot decision boundary along with the heatmap using training and testing data'''
 def plot_decision_boundary_and_metrics(
     model, x_train, y_train, x_test, y_test, metrics
 ):
@@ -86,7 +88,7 @@ def plot_decision_boundary_and_metrics(
         x=xx[0],
         y=y_,
         z=Z,
-        colorscale=["tomato", "rgb(27,158,119)"],
+        colorscale=["rgb(219, 129, 152)", "rgb(27, 158, 119)"],
         showscale=False,
     )
 
@@ -99,7 +101,7 @@ def plot_decision_boundary_and_metrics(
         marker=dict(
             size=10,
             color=y_train,
-            colorscale=["tomato", "green"],
+            colorscale=["tomato", "rgb(0, 231, 2)"],
             line=dict(color="black", width=2),
         ),
     )
@@ -115,8 +117,8 @@ def plot_decision_boundary_and_metrics(
         marker=dict(
             size=10,
             color=y_test,
-            colorscale=["tomato", "green"],
-            line=dict(color="black", width=2),
+            colorscale=["rgb(219, 129, 197)", "rgb(0, 231, 70)"],
+            line=dict(color="black", width=1.6),
         ),
     )
 
@@ -130,7 +132,7 @@ def plot_decision_boundary_and_metrics(
         go.Indicator(
             mode="gauge+number+delta",
             value=metrics["test_accuracy"],
-            title={"text": f"Accuracy (test)"},
+            title={"text": f"Accuracy(test)     "},
             domain={"x": [0, 1], "y": [0, 1]},
             gauge={"axis": {"range": [0, 1]}},
             delta={"reference": metrics["train_accuracy"]},
@@ -143,7 +145,7 @@ def plot_decision_boundary_and_metrics(
         go.Indicator(
             mode="gauge+number+delta",
             value=metrics["test_f1"],
-            title={"text": f"F1 score (test)"},
+            title={"text": f"F1 score(test)"},
             domain={"x": [0, 1], "y": [0, 1]},
             gauge={"axis": {"range": [0, 1]}},
             delta={"reference": metrics["train_f1"]},
@@ -159,6 +161,7 @@ def plot_decision_boundary_and_metrics(
     return fig
 
 
+'''Function to define the training steps and time along with training accuracy of the model'''
 def train_model(model, x_train, y_train, x_test, y_test):
     t0 = time.time()
     model.fit(x_train, y_train)
@@ -175,23 +178,27 @@ def train_model(model, x_train, y_train, x_test, y_test):
     return model, train_accuracy, train_f1, test_accuracy, test_f1, duration
 
 
+'''Function to read total bytes from an image'''
 def img_to_bytes(img_path):
     img_bytes = Path(img_path).read_bytes()
     encoded = base64.b64encode(img_bytes).decode()
     return encoded
 
 
+'''Function to display the informations and tips about a particular model'''
 def get_model_tips(model_type):
     model_tips = model_infos[model_type]
     return model_tips
 
 
+'''Function to refer the official documatation from scikit-learn about the model'''
 def get_model_url(model_type):
     model_url = model_urls[model_type]
-    text = f"**Link to scikit-learn official documentation [here]({model_url}) 💻 **"
+    text = f"**🗺 Explore scikit-learn official documentation [here]({model_url}) 💻 **"
     return text
 
 
+'''Functionto set polynomial degree for a particuar model before training period as a part of Feature Engineering'''
 def add_polynomial_features(x_train, x_test, degree):
     for d in range(2, degree + 1):
         x_train = np.concatenate(
