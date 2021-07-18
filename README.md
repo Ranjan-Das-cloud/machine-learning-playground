@@ -1,16 +1,16 @@
-[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://share.streamlit.io/ahmedbesbes/playground/main/app.py)
+[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://share.streamlit.io/ranjan/playground/main/app.py)
 
-# Playground 🧪
+# Machine Learning Playground ⚗️👨🏻‍💻
 
-Playground is a **streamlit** application that allows you to tinker with machine learning models from your browser.
+Machine Learning Playground is a **streamlit** application that allows you to tinker with machine learning models from your browser.
 
-So if you're a data science practitioner you should definitely try it out :wink:
+So if you're a data science practitioner you should definitely try it out 😉
 
-_This app is inspired by the great Tensorflow [playground](https://playground.tensorflow.org/). The only difference here is that it addresses classical machine learning models_
+_This app is inspired by the great Tensorflow [playground](https://playground.tensorflow.org/)._
 
 ## Demo
 
-Right [here](https://playground-ml.herokuapp.com/)
+Right [here](https://mlplayground.herokuapp.com/)
 
 ## How does it work ?
 
@@ -25,7 +25,7 @@ Right [here](https://playground-ml.herokuapp.com/)
 
 ## What can you learn from playground?
 
-If you're new to machine learning, playing with this app will probably (and hopefully :smile:) get you familiar with basic notions and help you build your first intuitions.
+If you're new to machine learning, playing with this app will probably (and hopefully 😄) get you familiar with basic notions and help you build your first intuitions.
 
 ### 1. Decision boundaries will (partially) tell you how models behave
 
@@ -72,9 +72,7 @@ streamlit run app.py
 
 ## Contributions are welcome!
 
-Feel free to open a pull request or an issue if you're thinking of a feature you'd like to see in the app.
-
-Off the top of my head, I can think of:
+Feel free to open a pull request or an issue if you're thinking of a feature you'd like to introduce in the app such as:
 
 - [ ] Adding other non-linear datasets
 - [ ] Adding more models
