@@ -15,6 +15,7 @@ from models.utils import model_imports
 from utils.functions import img_to_bytes
 
 
+'''Function to design the header of the webpage'''
 def introduction():
     st.title("**Welcome to ML playground ⚗️👨🏻‍💻**")
     st.subheader(
@@ -37,6 +38,7 @@ def introduction():
     )
 
 
+'''Function to choose the dataset with setting up the train and test noise effectively'''
 def dataset_selector():
     dataset_container = st.sidebar.beta_expander("Configure a dataset", True)
     with dataset_container:
@@ -72,6 +74,7 @@ def dataset_selector():
     return dataset, n_samples, train_noise, test_noise, n_classes
 
 
+'''Function to pick a model for training and predicting the model performance'''
 def model_selector():
     model_training_container = st.sidebar.beta_expander("Train a model", True)
     with model_training_container:
@@ -116,6 +119,7 @@ def model_selector():
     return model_type, model
 
 
+'''Function to generate different code snippet correspond to different machine learning models which can be reused in other windows'''
 def generate_snippet(
     model, model_type, n_samples, train_noise, test_noise, dataset, degree
 ):
@@ -167,10 +171,12 @@ def generate_snippet(
     return snippet
 
 
+'''Function to set up the highest degree of the polynomial for a particular model as part of Feature Engineering'''
 def polynomial_degree_selector():
     return st.sidebar.number_input("Highest polynomial degree", 1, 10, 1, 1)
 
 
+'''Function to design the footer of the webpage'''
 def footer():
     st.sidebar.markdown("---")
     st.sidebar.markdown(
