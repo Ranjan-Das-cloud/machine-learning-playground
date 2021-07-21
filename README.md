@@ -10,7 +10,7 @@ _This app is inspired by the great Tensorflow [playground](https://playground.te
 
 ## Demo
 
-Right [here](https://mlplayground.herokuapp.com/)
+Click [here](https://mlplayground.herokuapp.com/)
 
 ## How does it work ?
 
@@ -21,15 +21,15 @@ Right [here](https://mlplayground.herokuapp.com/)
 5. 🥇 Compare the accuracy and shape of the decision boundary introduced by every model with all possible settings
 6. 🕵🏻 Make a decision on the perfect model🏆 along with respective hyper-parameters
 
-**Bonus point**: the app also provides the ability to perform feature engineering by adding polynomial features. This proves to be helpful for linear models such as logistic regressions on non-linear problems.
+**Bonus point**: This app can show corresponding dataset on which the training and testing are to be performed along with it also provides the ability to perform feature engineering by adding polynomial features.
 
 ## What can you learn from playground?
 
-If you're new to machine learning, playing with this app will probably (and hopefully 😄) get you familiar with basic notions and help you build your first intuitions.
+If you're new to machine learning, playing with this app will probably (and hopefully 😄) get you familiar with fundamental concepts and help you build your first intuitions.
 
 ### 1. Decision boundaries will (partially) tell you how models behave
 
-### 2. You'll get a sense of the speed of each model
+### 2. You'll get a sense of the speed of each model while training them
 
 ### 3. Feature engineering can help
 
