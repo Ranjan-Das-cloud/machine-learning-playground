@@ -5,7 +5,7 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 from sklearn.metrics import accuracy_score, f1_score
-from sklearn.datasets import make_moons, make_circles, make_blobs
+from sklearn.datasets import make_moons, make_circles, make_blobs, load_iris
 from sklearn.preprocessing import StandardScaler
 
 from plotly.subplots import make_subplots
@@ -52,7 +52,7 @@ def generate_data(dataset, n_samples, train_noise, test_noise, n_classes):
     return x_train, y_train, x_test, y_test
 
 
-'''Function to plot decision boundary along with the heatmap using training and testing data'''
+'''Function to plot decision boundary along with the heatmap and accuracy score or f1 score using training and testing data'''
 def plot_decision_boundary_and_metrics(
     model, x_train, y_train, x_test, y_test, metrics
 ):
@@ -184,6 +184,25 @@ def img_to_bytes(img_path):
     encoded = base64.b64encode(img_bytes).decode()
     return encoded
 
+'''Function to display current dataset'''
+@st.cache(persist=True)
+def display_data(dataset, n_samples, train_noise, test_noise):
+    if st.sidebar.checkbox("Display dataset", False):
+        if dataset == "moons":
+            st.subheader("Displaying dataset")
+            X, y = make_moons(n_samples=n_samples, noise= train_noise + test_noise)
+            st.write(pd.DataFrame(dict(x=X[:,0], y=X[:,1], label=y)))
+        if dataset == "circles":
+            st.subheader("Displaying dataset")
+            X, y = make_circles(n_samples=n_samples, noise= train_noise + test_noise)
+            st.write(pd.DataFrame(dict(x=X[:,0], y=X[:,1], label=y)))
+        if dataset == "blobs":
+            st.subheader("Displaying dataset")
+            '''data = load_iris()
+            st.write(pd.DataFrame(data.data, columns=data.feature_names))'''
+            X, y = make_blobs(n_samples=n_samples, centers=2, n_features=2, cluster_std= (train_noise + test_noise) * 47 + 0.57, random_state=42)
+            st.write(pd.DataFrame(dict(x=X[:,0], y=X[:,1], label=y)))
+
 
 '''Function to display the informations and tips about a particular model'''
 def get_model_tips(model_type):
@@ -198,7 +217,7 @@ def get_model_url(model_type):
     return text
 
 
-'''Functionto set polynomial degree for a particuar model before training period as a part of Feature Engineering'''
+'''Function to set polynomial degree for a particuar model before training period as a part of Feature Engineering'''
 def add_polynomial_features(x_train, x_test, degree):
     for d in range(2, degree + 1):
         x_train = np.concatenate(
