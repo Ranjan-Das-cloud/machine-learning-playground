@@ -3,6 +3,7 @@ import streamlit as st
 from utils.functions import (
     add_polynomial_features,
     generate_data,
+    display_data,
     get_model_tips,
     get_model_url,
     plot_decision_boundary_and_metrics,
@@ -25,6 +26,7 @@ st.set_page_config(
 
 def sidebar_controllers():
     dataset, n_samples, train_noise, test_noise, n_classes = dataset_selector()
+    display_data(dataset, n_samples, train_noise, test_noise, n_classes)
     model_type, model = model_selector()
     x_train, y_train, x_test, y_test = generate_data(
         dataset, n_samples, train_noise, test_noise, n_classes
