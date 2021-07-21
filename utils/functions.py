@@ -185,23 +185,25 @@ def img_to_bytes(img_path):
     return encoded
 
 '''Function to display current dataset'''
-@st.cache(persist=True)
-def display_data(dataset, n_samples, train_noise, test_noise):
+def display_data(dataset, n_samples, train_noise, test_noise, n_classes):
     if st.sidebar.checkbox("Display dataset", False):
+        colA, colB = st.beta_columns(2)
         if dataset == "moons":
-            st.subheader("Displaying dataset")
-            X, y = make_moons(n_samples=n_samples, noise= train_noise + test_noise)
-            st.write(pd.DataFrame(dict(x=X[:,0], y=X[:,1], label=y)))
+            #st.subheader("Displaying dataset")
+            x_train, y_train = make_moons(n_samples=n_samples, noise=train_noise)
+            x_test, y_test = make_moons(n_samples=n_samples, noise=test_noise)
         if dataset == "circles":
-            st.subheader("Displaying dataset")
-            X, y = make_circles(n_samples=n_samples, noise= train_noise + test_noise)
-            st.write(pd.DataFrame(dict(x=X[:,0], y=X[:,1], label=y)))
+            x_train, y_train = make_circles(n_samples=n_samples, noise=train_noise)
+            x_test, y_test = make_circles(n_samples=n_samples, noise=test_noise)
         if dataset == "blobs":
-            st.subheader("Displaying dataset")
             '''data = load_iris()
             st.write(pd.DataFrame(data.data, columns=data.feature_names))'''
-            X, y = make_blobs(n_samples=n_samples, centers=2, n_features=2, cluster_std= (train_noise + test_noise) * 47 + 0.57, random_state=42)
-            st.write(pd.DataFrame(dict(x=X[:,0], y=X[:,1], label=y)))
+            x_train, y_train = make_blobs(n_samples=n_samples, centers=n_classes, n_features=2, cluster_std= train_noise * 47 + 0.57, random_state=42)
+            x_test, y_test = make_blobs(n_samples=n_samples // 2, centers=2, n_features=2, cluster_std= test_noise * 47 + 0.57, random_state=42)
+        colA.subheader("Displaying Training Dataset :")
+        colA.write(pd.DataFrame(dict(x=x_train[:,0], y=x_train[:,1], label=y_train)), use_column_width=True)
+        colB.subheader("Displaying Testing Dataset :")
+        colB.write(pd.DataFrame(dict(x=x_test[:,0], y=x_test[:,1], label=y_test)), use_column_width=True)
 
 
 '''Function to display the informations and tips about a particular model'''
